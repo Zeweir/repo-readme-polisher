@@ -19,6 +19,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--title", default=None, help="Override the generated project title.")
     parser.add_argument("--stdout", action="store_true", help="Print the generated README to stdout instead of writing a file.")
     parser.add_argument("--format", choices=["markdown", "json"], default="markdown", help="Output format. Use json to inspect detected project metadata.")
+    parser.add_argument("--lang", choices=["en", "zh"], default="en", help="README language for markdown output.")
+    parser.add_argument("--template", choices=["minimal", "portfolio"], default="portfolio", help="README template style.")
     return parser
 
 
