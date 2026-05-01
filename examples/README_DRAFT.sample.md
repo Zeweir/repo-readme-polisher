@@ -27,18 +27,33 @@ Package manager / build tool: **pip / build backend**
 
 ```text
 .
+├── .github
+│   ├── .github/ISSUE_TEMPLATE
+│   ├── .github/workflows
+├── docs
 ├── examples
 ├── repo_readme_polisher
 ├── tests
+│   │   ├── .github/ISSUE_TEMPLATE/bug_report.yml
+│   │   ├── .github/ISSUE_TEMPLATE/feature_request.yml
+│   ├── .github/PULL_REQUEST_TEMPLATE.md
+│   │   ├── .github/workflows/ci.yml
 ├── .gitignore
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+│   ├── docs/ARCHITECTURE.md
+│   ├── examples/README_DRAFT.sample.md
 ├── LICENSE
 ├── pyproject.toml
 ├── README.md
+├── README.zh-CN.md
 │   ├── repo_readme_polisher/__init__.py
 │   ├── repo_readme_polisher/__main__.py
 │   ├── repo_readme_polisher/detector.py
 │   ├── repo_readme_polisher/generator.py
 │   ├── repo_readme_polisher/scanner.py
+├── SECURITY.md
 │   ├── tests/test_generator.py
 ```
 

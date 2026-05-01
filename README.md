@@ -1,57 +1,56 @@
-# Repo README Polisher
+﻿# Repo README Polisher
 
-A lightweight CLI tool that scans a local project and generates a polished GitHub README draft.
+<p align="center">
+  <strong>Turn a raw project folder into a polished GitHub README draft.</strong>
+</p>
 
-> Built for developers who want a better first README without starting from a blank page.
+<p align="center">
+  <a href="README.zh-CN.md">简体中文</a> ·
+  <a href="#quick-start">Quick Start</a> ·
+  <a href="#roadmap">Roadmap</a> ·
+  <a href="CONTRIBUTING.md">Contributing</a>
+</p>
 
-## Why this exists
+<p align="center">
+  <img alt="Python" src="https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white">
+  <img alt="License" src="https://img.shields.io/badge/License-MIT-green.svg">
+  <img alt="Status" src="https://img.shields.io/badge/Status-Alpha-orange">
+  <img alt="Runtime" src="https://img.shields.io/badge/Runtime-stdlib--only-blue">
+</p>
 
-Most side projects have code before they have a story. `repo-readme-polisher` helps bridge that gap: it inspects a project directory, detects common stacks and project signals, then creates a structured `README_DRAFT.md` that you can edit into a GitHub-ready README.
+---
 
-It is intentionally lightweight: no API key, no cloud service, no heavy framework. The first version is rule-based and local-first; AI-assisted rewriting can be added later as an optional feature.
+`repo-readme-polisher` is a lightweight CLI that scans a local project and generates a structured, GitHub-ready `README_DRAFT.md`.
 
-## Features
+It is designed for developers who already have code, but do not yet have a clear project story: features, tech stack, quick start, structure, roadmap, and portfolio-friendly highlights.
 
-- Scan a local project directory
-- Detect common languages and frameworks
-- Recognize files like `package.json`, `pyproject.toml`, `pom.xml`, `Dockerfile`, and `.env.example`
-- Generate a structured GitHub README draft
-- Include quick start, testing, project structure, tech stack, roadmap, and license sections
-- Work as a simple Python CLI with no runtime dependencies
+No API key. No cloud service. No lock-in. Just a local-first project scanner and README generator.
 
-## Tech Stack
+## Highlights
 
-- Python 3.10+
-- Standard library only for runtime
-- `argparse` for CLI parsing
-- `pytest` for tests
+- **Local-first**: scans your project directory without sending files anywhere.
+- **Zero runtime dependencies**: built with the Python standard library.
+- **Stack-aware detection**: recognizes Python, JavaScript/TypeScript, Vue, React, Java, Spring Boot, Docker, and common package files.
+- **GitHub-ready output**: generates sections for features, tech stack, quick start, testing, roadmap, and license.
+- **Portfolio-friendly**: helps turn side projects into repositories that are easier to understand and present.
 
 ## Quick Start
 
 ```bash
-# Clone the repository
-git clone https://github.com/ZeWeir/repo-readme-polisher.git
+git clone https://github.com/Zeweir/repo-readme-polisher.git
 cd repo-readme-polisher
 
-# Optional: create a virtual environment
-python -m venv .venv
-.venv\Scripts\activate  # Windows
-# source .venv/bin/activate  # macOS/Linux
-
-# Install in editable mode
 python -m pip install -e .
-
-# Generate a README draft for any local project
 repo-readme-polisher path/to/your-project
 ```
 
-You can also run it directly as a module:
+Or run it directly as a module:
 
 ```bash
 python -m repo_readme_polisher path/to/your-project
 ```
 
-By default, it writes:
+By default, the tool writes:
 
 ```text
 README_DRAFT.md
@@ -89,50 +88,59 @@ Override the generated title:
 repo-readme-polisher ../my-project --title "My Awesome Project"
 ```
 
+## What it detects
+
+| Signal | Examples |
+| --- | --- |
+| Languages | Python, JavaScript/TypeScript, Java, Vue, Go |
+| Package files | `pyproject.toml`, `requirements.txt`, `package.json`, `pom.xml`, `build.gradle` |
+| Frontend tools | React, Vue, Vite, Next.js, Tailwind CSS |
+| Backend tools | Express, Fastify, Spring Boot |
+| Deployment hints | `Dockerfile`, `docker-compose.yml`, `.env.example` |
+| Project hygiene | `LICENSE`, `tests/`, existing `README.md` |
+
 ## Example Output
 
 See [`examples/README_DRAFT.sample.md`](examples/README_DRAFT.sample.md).
+
+## Architecture
+
+```mermaid
+flowchart TD
+    A[Project directory] --> B[Scanner]
+    B --> C[Important file detection]
+    B --> D[Directory tree summary]
+    C --> E[Stack detector]
+    D --> F[README generator]
+    E --> F
+    F --> G[README_DRAFT.md]
+```
 
 ## Project Structure
 
 ```text
 .
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   └── workflows/
+├── docs/
+├── examples/
 ├── repo_readme_polisher/
 │   ├── __init__.py
 │   ├── __main__.py
 │   ├── detector.py
 │   ├── generator.py
 │   └── scanner.py
-├── examples/
-│   └── README_DRAFT.sample.md
 ├── tests/
-│   └── test_generator.py
-├── pyproject.toml
-├── README.md
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
 ├── LICENSE
-└── .gitignore
+├── README.md
+├── README.zh-CN.md
+├── SECURITY.md
+└── pyproject.toml
 ```
-
-## How it works
-
-```mermaid
-flowchart TD
-    A[Project path] --> B[Scan files and folders]
-    B --> C[Detect languages, frameworks, tools]
-    C --> D[Generate README sections]
-    D --> E[Write README_DRAFT.md]
-```
-
-The scanner ignores common noisy directories like `.git`, `node_modules`, `dist`, `build`, `target`, `.venv`, and cache folders.
-
-## Roadmap
-
-- [ ] Add richer framework detection
-- [ ] Add Markdown quality checks
-- [ ] Add optional AI rewrite mode with `--ai`
-- [ ] Add GitHub repository metadata support
-- [ ] Add badges and screenshot suggestions
-- [ ] Add config file support for custom README templates
 
 ## Development
 
@@ -147,6 +155,36 @@ Generate a sample draft from this repository:
 ```bash
 python -m repo_readme_polisher . -o examples/README_DRAFT.sample.md
 ```
+
+## Roadmap
+
+- [x] Local project scanner
+- [x] Rule-based stack detection
+- [x] README draft generator
+- [x] Example output
+- [x] GitHub Actions CI
+- [ ] Richer framework detection
+- [ ] Markdown quality scoring
+- [ ] Configurable README templates
+- [ ] Optional AI rewrite mode with `--ai`
+- [ ] GitHub repository metadata support
+- [ ] Badges and screenshot suggestions
+
+## Contributing
+
+Contributions are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup and development guidelines.
+
+If you want to propose a new detector, please include:
+
+1. The files or dependency names to detect.
+2. A small example project structure.
+3. Expected README output.
+
+## Security
+
+This tool is designed to inspect local project metadata. It should not upload your files or secrets anywhere.
+
+If you find a security issue, please see [SECURITY.md](SECURITY.md).
 
 ## License
 
