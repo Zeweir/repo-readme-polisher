@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 
 from repo_readme_polisher.ai import build_ai_prompt
 from repo_readme_polisher.detector import detect_project

@@ -1,4 +1,4 @@
-﻿# Architecture
+# Architecture
 
 `repo-readme-polisher` is intentionally small and easy to reason about.
 

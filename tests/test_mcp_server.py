@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 
 from repo_readme_polisher.mcp_server import handle_request
 

@@ -1,4 +1,4 @@
-﻿"""Repo README Polisher.
+"""Repo README Polisher.
 
 A lightweight project scanner that generates polished GitHub README drafts.
 """

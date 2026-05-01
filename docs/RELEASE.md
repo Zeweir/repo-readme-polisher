@@ -1,4 +1,4 @@
-﻿# Release Process
+# Release Process
 
 This project publishes GitHub Releases from version tags.
 

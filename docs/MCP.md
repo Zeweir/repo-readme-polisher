@@ -1,4 +1,4 @@
-﻿# MCP Integration
+# MCP Integration
 
 `repo-readme-polisher` includes a lightweight stdio tool server that can be adapted for MCP-compatible agent clients.
 

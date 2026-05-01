@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 from .detector import ProjectProfile
 from .scanner import ProjectScan
