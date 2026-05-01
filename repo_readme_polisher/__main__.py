@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from .detector import detect_project
+from .ai import build_ai_prompt
 from .generator import generate_readme
 from .scanner import scan_project
 
@@ -21,6 +22,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--format", choices=["markdown", "json"], default="markdown", help="Output format. Use json to inspect detected project metadata.")
     parser.add_argument("--lang", choices=["en", "zh"], default="en", help="README language for markdown output.")
     parser.add_argument("--template", choices=["minimal", "portfolio"], default="portfolio", help="README template style.")
+    parser.add_argument("--ai", action="store_true", help="Prepare an AI rewrite prompt next to the generated README. This does not call external APIs yet.")
     return parser
 
 
@@ -59,3 +61,4 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
+
