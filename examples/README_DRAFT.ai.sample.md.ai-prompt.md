@@ -1,3 +1,22 @@
+You are improving a GitHub README for a software project.
+
+Project name: repo-readme-polisher
+Detected languages: Python
+Detected frameworks/tools: Not detected yet
+Detected databases: Not detected yet
+Detected deployment hints: Not detected yet
+
+Requirements:
+- Keep the README honest and technically accurate.
+- Make the opening description specific and compelling.
+- Preserve install/run/test commands if they are correct.
+- Add concise technical highlights.
+- Do not invent features that are not implied by the project structure.
+- Keep secrets, tokens, and private paths out of the final README.
+
+Current generated draft:
+
+---BEGIN DRAFT---
 # Repo Readme Polisher
 
 A polished GitHub README draft generated from the local project structure.
@@ -122,3 +141,7 @@ flowchart TD
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
+---END DRAFT---
+
+Return an improved README in Markdown.

@@ -56,6 +56,10 @@ def main(argv: list[str] | None = None) -> int:
         output_path = Path.cwd() / output_path
     output_path.write_text(output, encoding="utf-8")
     print(f"README draft written to {output_path}")
+    if args.ai:
+        prompt_path = output_path.with_suffix(output_path.suffix + ".ai-prompt.md")
+        prompt_path.write_text(build_ai_prompt(scan, profile, output), encoding="utf-8")
+        print(f"AI rewrite prompt written to {prompt_path}")
     return 0
 
 
