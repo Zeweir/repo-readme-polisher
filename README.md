@@ -1,13 +1,13 @@
-﻿# Repo README Polisher
+# Repo README Polisher
 
 <p align="center">
   <strong>Turn a raw project folder into a polished GitHub README draft.</strong>
 </p>
 
 <p align="center">
-  <a href="README.zh-CN.md">绠€浣撲腑鏂?/a> 路
-  <a href="#quick-start">Quick Start</a> 路
-  <a href="#roadmap">Roadmap</a> 路
+  <a href="README.zh-CN.md">简体中文</a> ·
+  <a href="#quick-start">Quick Start</a> ·
+  <a href="#roadmap">Roadmap</a> ·
   <a href="CONTRIBUTING.md">Contributing</a>
 </p>
 
@@ -88,6 +88,24 @@ Override the generated title:
 repo-readme-polisher ../my-project --title "My Awesome Project"
 ```
 
+Generate a Chinese draft:
+
+```bash
+repo-readme-polisher ../my-project --lang zh
+```
+
+Generate JSON metadata:
+
+```bash
+repo-readme-polisher ../my-project --format json
+```
+
+Prepare an AI rewrite prompt:
+
+```bash
+repo-readme-polisher ../my-project --ai
+```
+
 ## What it detects
 
 | Signal | Examples |
@@ -96,12 +114,18 @@ repo-readme-polisher ../my-project --title "My Awesome Project"
 | Package files | `pyproject.toml`, `requirements.txt`, `package.json`, `pom.xml`, `build.gradle` |
 | Frontend tools | React, Vue, Vite, Next.js, Tailwind CSS |
 | Backend tools | Express, Fastify, Spring Boot |
-| Deployment hints | `Dockerfile`, `docker-compose.yml`, `.env.example` |
+| Databases | MySQL, PostgreSQL, Redis, MongoDB, vector databases |
+| Testing | pytest, Jest, Vitest, Playwright, JUnit |
+| Deployment hints | `Dockerfile`, `docker-compose.yml`, `.env.example`, Nginx, Vercel |
 | Project hygiene | `LICENSE`, `tests/`, existing `README.md` |
 
 ## Example Output
 
-See [`examples/README_DRAFT.sample.md`](examples/README_DRAFT.sample.md).
+See:
+
+- [`examples/README_DRAFT.sample.md`](examples/README_DRAFT.sample.md)
+- [`examples/README_DRAFT.zh-CN.sample.md`](examples/README_DRAFT.zh-CN.sample.md)
+- [`examples/scan.sample.json`](examples/scan.sample.json)
 
 ## Architecture
 
@@ -120,26 +144,28 @@ flowchart TD
 
 ```text
 .
-鈹溾攢鈹€ .github/
-鈹?  鈹溾攢鈹€ ISSUE_TEMPLATE/
-鈹?  鈹斺攢鈹€ workflows/
-鈹溾攢鈹€ docs/
-鈹溾攢鈹€ examples/
-鈹溾攢鈹€ repo_readme_polisher/
-鈹?  鈹溾攢鈹€ __init__.py
-鈹?  鈹溾攢鈹€ __main__.py
-鈹?  鈹溾攢鈹€ detector.py
-鈹?  鈹溾攢鈹€ generator.py
-鈹?  鈹斺攢鈹€ scanner.py
-鈹溾攢鈹€ tests/
-鈹溾攢鈹€ CHANGELOG.md
-鈹溾攢鈹€ CODE_OF_CONDUCT.md
-鈹溾攢鈹€ CONTRIBUTING.md
-鈹溾攢鈹€ LICENSE
-鈹溾攢鈹€ README.md
-鈹溾攢鈹€ README.zh-CN.md
-鈹溾攢鈹€ SECURITY.md
-鈹斺攢鈹€ pyproject.toml
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   └── workflows/
+├── docs/
+├── examples/
+├── repo_readme_polisher/
+│   ├── __init__.py
+│   ├── __main__.py
+│   ├── ai.py
+│   ├── detector.py
+│   ├── generator.py
+│   ├── mcp_server.py
+│   └── scanner.py
+├── tests/
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+├── README.zh-CN.md
+├── SECURITY.md
+└── pyproject.toml
 ```
 
 ## MCP / Agent Integration
@@ -184,10 +210,13 @@ python -m repo_readme_polisher . -o examples/README_DRAFT.sample.md
 - [x] README draft generator
 - [x] Example output
 - [x] GitHub Actions CI
+- [x] Bilingual README draft generation
+- [x] Optional AI rewrite prompt mode with `--ai`
+- [x] Experimental MCP-style agent integration
+- [x] GitHub Release workflow
 - [ ] Richer framework detection
 - [ ] Markdown quality scoring
 - [ ] Configurable README templates
-- [x] Optional AI rewrite prompt mode with `--ai`
 - [ ] GitHub repository metadata support
 - [ ] Badges and screenshot suggestions
 
@@ -210,4 +239,3 @@ If you find a security issue, please see [SECURITY.md](SECURITY.md).
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
-
