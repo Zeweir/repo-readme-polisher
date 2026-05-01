@@ -1,19 +1,45 @@
-from __future__ import annotations
+﻿from __future__ import annotations
 
 from .detector import ProjectProfile
 from .scanner import ProjectScan
 
 
-def generate_readme(scan: ProjectScan, profile: ProjectProfile, title: str | None = None) -> str:
+def generate_readme(scan: ProjectScan, profile: ProjectProfile, title: str | None = None, lang: str = "en", template: str = "portfolio") -> str:
+    if lang == "zh":
+        return _generate_zh(scan, profile, title, template)
+    return _generate_en(scan, profile, title, template)
+
+
+def _generate_en(scan: ProjectScan, profile: ProjectProfile, title: str | None, template: str) -> str:
     project_title = title or _title_from_name(scan.name)
     tree = _format_tree(scan)
-    tech_stack = _bullet_list(profile.languages + profile.frameworks)
-    features = _bullet_list(profile.features)
-    package_managers = ", ".join(profile.package_managers)
-    run_commands = "\n".join(profile.run_commands)
-    test_commands = "\n".join(profile.test_commands)
-    notes = "\n".join(f"- {note}" for note in profile.notes) or "- No scanner warnings."
+    compact = template == "minimal"
+    extra = "" if compact else f"""
+## Architecture
 
+```mermaid
+flowchart TD
+    A[User] --> B[Application]
+    B --> C[Core Features]
+    C --> D[Output]
+```
+
+## Technical Highlights
+
+- Detected languages: {", ".join(profile.languages)}
+- Detected frameworks/tools: {", ".join(profile.frameworks)}
+- Detected databases: {", ".join(profile.databases)}
+- Deployment hints: {", ".join(profile.deployment)}
+- Generated from a structure-aware scan instead of a blank template
+
+## Roadmap
+
+- [ ] Add screenshots/demo GIF
+- [ ] Expand installation instructions
+- [ ] Document API or CLI usage
+- [ ] Add tests and CI workflow
+- [ ] Polish the project description for portfolio/resume usage
+"""
     return f"""# {project_title}
 
 A polished GitHub README draft generated from the local project structure.
@@ -26,16 +52,20 @@ Add screenshots, a GIF, or a demo link here.
 
 ## Features
 
-{features}
+{_bullet_list(profile.features)}
 - Clean project summary generated from local files
 - Quick-start section prepared for GitHub visitors
-- Roadmap and technical highlights ready to customize
 
 ## Tech Stack
 
-{tech_stack}
-
-Package manager / build tool: **{package_managers}**
+| Category | Detected |
+| --- | --- |
+| Languages | {", ".join(profile.languages)} |
+| Frameworks | {", ".join(profile.frameworks)} |
+| Package/build tools | {", ".join(profile.package_managers)} |
+| Databases | {", ".join(profile.databases)} |
+| Testing | {", ".join(profile.test_tools)} |
+| Deployment | {", ".join(profile.deployment)} |
 
 ## Project Structure
 
@@ -54,13 +84,13 @@ cd {scan.name}
 # TODO: add install command
 
 # 3. Run the project
-{run_commands}
+{chr(10).join(profile.run_commands)}
 ```
 
 ## Testing
 
 ```bash
-{test_commands}
+{chr(10).join(profile.test_commands)}
 ```
 
 ## Environment Variables
@@ -71,41 +101,108 @@ If the project uses environment variables, create a `.env` file from `.env.examp
 cp .env.example .env
 ```
 
-Document required variables here:
-
-| Name | Description | Required |
-| --- | --- | --- |
-| `EXAMPLE_KEY` | Replace with a real variable | No |
-
-## Usage
-
-Describe the main workflow here:
-
-1. Open or run the project.
-2. Complete the primary action.
-3. Review the result/output.
-
-## Technical Highlights
-
-- Detected project languages: {", ".join(profile.languages)}
-- Detected frameworks/tools: {", ".join(profile.frameworks)}
-- Generated from a structure-aware scan instead of a blank template
-
-## Scanner Notes
-
-{notes}
-
-## Roadmap
-
-- [ ] Add screenshots/demo GIF
-- [ ] Expand installation instructions
-- [ ] Document API or CLI usage
-- [ ] Add tests and CI workflow
-- [ ] Polish the project description for portfolio/resume usage
-
+{extra}
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+"""
+
+
+def _generate_zh(scan: ProjectScan, profile: ProjectProfile, title: str | None, template: str) -> str:
+    project_title = title or _title_from_name(scan.name)
+    tree = _format_tree(scan)
+    compact = template == "minimal"
+    extra = "" if compact else f"""
+## 架构
+
+```mermaid
+flowchart TD
+    A[用户] --> B[应用]
+    B --> C[核心功能]
+    C --> D[输出结果]
+```
+
+## 技术亮点
+
+- 检测到的语言：{", ".join(profile.languages)}
+- 检测到的框架/工具：{", ".join(profile.frameworks)}
+- 检测到的数据库：{", ".join(profile.databases)}
+- 部署线索：{", ".join(profile.deployment)}
+- 基于项目结构生成，而不是空白模板
+
+## 路线图
+
+- [ ] 添加截图或演示 GIF
+- [ ] 完善安装说明
+- [ ] 补充 API 或 CLI 使用文档
+- [ ] 添加测试和 CI 工作流
+- [ ] 优化成适合作品集/简历展示的项目描述
+"""
+    return f"""# {project_title}
+
+一份根据本地项目结构生成的 GitHub README 草稿。
+
+> 请把这段替换成更准确的一句话介绍：这个项目做什么、给谁用、为什么有用。
+
+## 预览
+
+在这里添加截图、GIF 或在线演示链接。
+
+## 功能
+
+{_bullet_list(profile.features)}
+- 根据本地文件生成项目摘要
+- 生成适合 GitHub 访问者阅读的快速开始章节
+
+## 技术栈
+
+| 类别 | 检测结果 |
+| --- | --- |
+| 语言 | {", ".join(profile.languages)} |
+| 框架 | {", ".join(profile.frameworks)} |
+| 包管理/构建工具 | {", ".join(profile.package_managers)} |
+| 数据库 | {", ".join(profile.databases)} |
+| 测试 | {", ".join(profile.test_tools)} |
+| 部署 | {", ".join(profile.deployment)} |
+
+## 项目结构
+
+```text
+{tree}
+```
+
+## 快速开始
+
+```bash
+# 1. 克隆仓库
+git clone <your-repo-url>
+cd {scan.name}
+
+# 2. 安装依赖
+# TODO: 添加安装命令
+
+# 3. 运行项目
+{chr(10).join(profile.run_commands)}
+```
+
+## 测试
+
+```bash
+{chr(10).join(profile.test_commands)}
+```
+
+## 环境变量
+
+如果项目使用环境变量，可以从 `.env.example` 创建 `.env`：
+
+```bash
+cp .env.example .env
+```
+
+{extra}
+## 许可证
+
+本项目基于 MIT License 开源。详见 [LICENSE](LICENSE)。
 """
 
 

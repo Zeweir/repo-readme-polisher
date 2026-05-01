@@ -41,7 +41,7 @@ def main(argv: list[str] | None = None) -> int:
         }
         output = json.dumps(payload, ensure_ascii=False, indent=2)
     else:
-        output = generate_readme(scan, profile, title=args.title)
+        output = generate_readme(scan, profile, title=args.title, lang=args.lang, template=args.template)
 
     if args.stdout or args.format == "json":
         print(output)
