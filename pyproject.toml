@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "repo-readme-polisher"
+version = "0.1.0"
+description = "A lightweight CLI that scans a local project and generates a polished GitHub README draft."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [
+  { name = "ZeWeir", email = "3530466993@qq.com" }
+]
+keywords = ["readme", "github", "cli", "project-scanner", "portfolio"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Documentation"
+]
+dependencies = []
+
+[project.scripts]
+repo-readme-polisher = "repo_readme_polisher.__main__:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["repo_readme_polisher"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
