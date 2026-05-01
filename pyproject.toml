@@ -1,10 +1,10 @@
-[build-system]
+﻿[build-system]
 requires = ["hatchling>=1.26"]
 build-backend = "hatchling.build"
 
 [project]
 name = "repo-readme-polisher"
-version = "0.1.0"
+version = "0.5.0"
 description = "A lightweight CLI that scans a local project and generates a polished GitHub README draft."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -29,6 +29,7 @@ dependencies = []
 
 [project.scripts]
 repo-readme-polisher = "repo_readme_polisher.__main__:main"
+repo-readme-polisher-mcp = "repo_readme_polisher.mcp_server:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["repo_readme_polisher"]
@@ -36,3 +37,4 @@ packages = ["repo_readme_polisher"]
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+
