@@ -1,0 +1,42 @@
+{
+  "project": {
+    "name": "repo-readme-polisher",
+    "root": "C:\\Users\\35304\\.openclaw\\workspace\\repo-readme-polisher"
+  },
+  "profile": {
+    "languages": [
+      "Python"
+    ],
+    "frameworks": [
+      "Not detected yet"
+    ],
+    "package_managers": [
+      "pip / build backend"
+    ],
+    "databases": [
+      "Not detected yet"
+    ],
+    "test_tools": [
+      "Not detected yet"
+    ],
+    "deployment": [
+      "Not detected yet"
+    ],
+    "run_commands": [
+      "python -m <module>"
+    ],
+    "test_commands": [
+      "python -m pytest"
+    ],
+    "features": [
+      "Open-source license included",
+      "Test directory present"
+    ],
+    "notes": []
+  },
+  "important_files": [
+    "LICENSE",
+    "README.md",
+    "pyproject.toml"
+  ]
+}

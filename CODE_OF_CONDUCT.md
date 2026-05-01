@@ -1,4 +1,4 @@
-﻿# Code of Conduct
+# Code of Conduct
 
 This project follows a simple rule: be respectful and useful.
 

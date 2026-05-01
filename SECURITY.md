@@ -1,4 +1,4 @@
-﻿# Security Policy
+# Security Policy
 
 `repo-readme-polisher` is intended to run locally and inspect project metadata.
 

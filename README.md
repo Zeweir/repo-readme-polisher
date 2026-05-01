@@ -5,9 +5,9 @@
 </p>
 
 <p align="center">
-  <a href="README.zh-CN.md">简体中文</a> ·
-  <a href="#quick-start">Quick Start</a> ·
-  <a href="#roadmap">Roadmap</a> ·
+  <a href="README.zh-CN.md">绠€浣撲腑鏂?/a> 路
+  <a href="#quick-start">Quick Start</a> 路
+  <a href="#roadmap">Roadmap</a> 路
   <a href="CONTRIBUTING.md">Contributing</a>
 </p>
 
@@ -120,27 +120,48 @@ flowchart TD
 
 ```text
 .
-├── .github/
-│   ├── ISSUE_TEMPLATE/
-│   └── workflows/
-├── docs/
-├── examples/
-├── repo_readme_polisher/
-│   ├── __init__.py
-│   ├── __main__.py
-│   ├── detector.py
-│   ├── generator.py
-│   └── scanner.py
-├── tests/
-├── CHANGELOG.md
-├── CODE_OF_CONDUCT.md
-├── CONTRIBUTING.md
-├── LICENSE
-├── README.md
-├── README.zh-CN.md
-├── SECURITY.md
-└── pyproject.toml
+鈹溾攢鈹€ .github/
+鈹?  鈹溾攢鈹€ ISSUE_TEMPLATE/
+鈹?  鈹斺攢鈹€ workflows/
+鈹溾攢鈹€ docs/
+鈹溾攢鈹€ examples/
+鈹溾攢鈹€ repo_readme_polisher/
+鈹?  鈹溾攢鈹€ __init__.py
+鈹?  鈹溾攢鈹€ __main__.py
+鈹?  鈹溾攢鈹€ detector.py
+鈹?  鈹溾攢鈹€ generator.py
+鈹?  鈹斺攢鈹€ scanner.py
+鈹溾攢鈹€ tests/
+鈹溾攢鈹€ CHANGELOG.md
+鈹溾攢鈹€ CODE_OF_CONDUCT.md
+鈹溾攢鈹€ CONTRIBUTING.md
+鈹溾攢鈹€ LICENSE
+鈹溾攢鈹€ README.md
+鈹溾攢鈹€ README.zh-CN.md
+鈹溾攢鈹€ SECURITY.md
+鈹斺攢鈹€ pyproject.toml
 ```
+
+## MCP / Agent Integration
+
+This repository includes an experimental MCP-style stdio server for agent workflows.
+
+```bash
+repo-readme-polisher-mcp
+```
+
+See [docs/MCP.md](docs/MCP.md) for request examples.
+
+## Release Workflow
+
+Version tags trigger the GitHub Actions release workflow:
+
+```bash
+git tag -a v0.5.0 -m "v0.5.0"
+git push origin v0.5.0
+```
+
+See [docs/RELEASE.md](docs/RELEASE.md).
 
 ## Development
 
@@ -166,7 +187,7 @@ python -m repo_readme_polisher . -o examples/README_DRAFT.sample.md
 - [ ] Richer framework detection
 - [ ] Markdown quality scoring
 - [ ] Configurable README templates
-- [ ] Optional AI rewrite mode with `--ai`
+- [x] Optional AI rewrite prompt mode with `--ai`
 - [ ] GitHub repository metadata support
 - [ ] Badges and screenshot suggestions
 
@@ -189,3 +210,4 @@ If you find a security issue, please see [SECURITY.md](SECURITY.md).
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+
